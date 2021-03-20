@@ -3,34 +3,51 @@
 //
 
 import UIKit
+import MapKit
 
 class DirectionView: UIView {
 
-  let label: UILabel
+  let mapView: MKMapView
   let imageView: UIImageView
+  let label: UILabel
   
-  override init(frame: CGRect) {
+  init(frame: CGRect, hideDirectionAndDistance: Bool) {
+        
+    mapView = MKMapView()
+    mapView.translatesAutoresizingMaskIntoConstraints = false
+    mapView.alpha = 0.5
+    
+    imageView = UIImageView(image: UIImage(systemName: "location.north.fill"))
+    imageView.contentMode = .scaleAspectFit
     
     label = UILabel()
-    label.translatesAutoresizingMaskIntoConstraints = false
     label.text = "Missing"
+    label.textAlignment = .center
+    label.font = .preferredFont(forTextStyle: .headline)
     
-    imageView = UIImageView(image: UIImage(systemName: "arrow.up"))
-    imageView.translatesAutoresizingMaskIntoConstraints = false
+    let stackView = UIStackView(arrangedSubviews: [imageView, label])
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.axis = .vertical
+    stackView.alignment = .center
+    stackView.spacing = 10
+    stackView.isHidden = hideDirectionAndDistance
     
     super.init(frame: frame)
     
-    backgroundColor = .white
+//    backgroundColor = .white
     
-    addSubview(label)
-    addSubview(imageView)
+    addSubview(mapView)
+    addSubview(stackView)
     
     NSLayoutConstraint.activate([
-      label.centerXAnchor.constraint(equalTo: centerXAnchor),
-      label.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
+      mapView.topAnchor.constraint(equalTo: topAnchor),
+      mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      mapView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
+
+      stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+      stackView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
       
-      imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-      imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
       imageView.widthAnchor.constraint(equalToConstant: 100),
       imageView.heightAnchor.constraint(equalToConstant: 100),
     ])

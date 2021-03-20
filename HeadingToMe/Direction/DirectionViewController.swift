@@ -3,12 +3,13 @@
 //
 
 import UIKit
-import CoreLocation
+import MapKit
 import Combine
 
 class DirectionViewController: UIViewController {
 
   let coordinate: CLLocationCoordinate2D
+  let hideDirectionAndDistance: Bool
   let locationProvider = LocationProvider()
   private var locationSubscription: AnyCancellable?
   private var headingSubscription: AnyCancellable?
@@ -17,9 +18,10 @@ class DirectionViewController: UIViewController {
     return view as! DirectionView
   }
   
-  init(coordinate: CLLocationCoordinate2D) {
+  init(coordinate: CLLocationCoordinate2D, hideDirectionAndDistance: Bool = false) {
     
     self.coordinate = coordinate
+    self.hideDirectionAndDistance = hideDirectionAndDistance
     
     super.init(nibName: nil, bundle: nil)
   }
@@ -27,7 +29,7 @@ class DirectionViewController: UIViewController {
   required init?(coder: NSCoder) { fatalError() }
   
   override func loadView() {
-    let contentView = DirectionView()
+    let contentView = DirectionView(frame: .zero, hideDirectionAndDistance: hideDirectionAndDistance)
     view = contentView
   }
   
@@ -55,6 +57,9 @@ class DirectionViewController: UIViewController {
       let otherLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
       let distance = location.distance(from: otherLocation)
       contentView.label.text = String(format: "%.2lf km", distance / 1000)
+      
+      let region = MKCoordinateRegion(center: otherLocation.coordinate, latitudinalMeters: 300, longitudinalMeters: 300)
+      contentView.mapView.setRegion(region, animated: true)
     }
   }
   

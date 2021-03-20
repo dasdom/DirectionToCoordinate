@@ -15,6 +15,8 @@ class SendView: UIView {
     
     mapView = MKMapView()
     mapView.showsUserLocation = true
+    mapView.layer.cornerRadius = 5
+    mapView.clipsToBounds = true
     
     label = UILabel()
     label.numberOfLines = 0
@@ -27,10 +29,11 @@ class SendView: UIView {
     let stackView = UIStackView(arrangedSubviews: [mapView, label, sendButton])
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
+    stackView.spacing = 4
     
     super.init(frame: frame)
     
-    backgroundColor = .white
+//    backgroundColor = .white
     
     addSubview(stackView)
     

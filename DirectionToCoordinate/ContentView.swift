@@ -22,9 +22,9 @@ struct ContentView: View {
       return 0
     }
   }
-  var distance: Int {
+  var distance: Double {
     if let myLocation = locationProvider.location {
-      return Int(myLocation.distance(from: location))
+      return myLocation.distance(from: location)
     } else {
       return 0
     }
@@ -49,15 +49,17 @@ struct ContentView: View {
       }
       
       VStack {
-        Triangle()
-          .rotation(Angle(degrees: bearing - (locationProvider.heading?.magneticHeading ?? 0)))
-          .frame(width: 80, height: 100)
+        Image(systemName: "location.north.fill")
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+          .rotationEffect(Angle(degrees: bearing - (locationProvider.heading?.magneticHeading ?? 0)))
+          .frame(height: 100)
           .padding()
         if let error = error {
           Text("\(error.localizedDescription)")
             .padding()
         } else {
-          Text("\(distance/1000) km")
+          Text(String(format: "%.2lf km", distance/1000))
             .font(.headline)
             .padding()
         }
@@ -68,20 +70,6 @@ struct ContentView: View {
     .onAppear(perform: {
       locationProvider.start()
     })
-  }
-  
-  // https://www.hackingwithswift.com/books/ios-swiftui/paths-vs-shapes-in-swiftui
-  struct Triangle: Shape {
-      func path(in rect: CGRect) -> Path {
-          var path = Path()
-
-          path.move(to: CGPoint(x: rect.midX, y: rect.minY))
-          path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-          path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-          path.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
-
-          return path
-      }
   }
 }
 

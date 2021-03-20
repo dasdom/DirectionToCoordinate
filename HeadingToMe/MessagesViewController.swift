@@ -70,8 +70,18 @@ class MessagesViewController: MSMessagesAppViewController {
     if let path = conversation.selectedMessage?.url?.path, false == path.isEmpty {
       let components = path.components(separatedBy: ":")
       if components.count > 1, let latitude = Double(components[0]), let longitude = Double(components[1]) {
+        
+        let hideDirectionAndDistance: Bool
+        if let senderId = conversation.selectedMessage?.senderParticipantIdentifier,
+           !conversation.remoteParticipantIdentifiers.contains(senderId) {
+          
+          hideDirectionAndDistance = true
+        } else {
+          hideDirectionAndDistance = false
+        }
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let directionController = DirectionViewController(coordinate: coordinate)
+        let directionController = DirectionViewController(coordinate: coordinate, hideDirectionAndDistance: hideDirectionAndDistance)
+//        let directionController = DirectionViewController(coordinate: coordinate)
         controller = directionController
       } else {
         controller = UIViewController()
@@ -110,16 +120,22 @@ class MessagesViewController: MSMessagesAppViewController {
   
   fileprivate func composeMessage(coordinate: CLLocationCoordinate2D, caption: String, image: UIImage?, session: MSSession? = nil) -> MSMessage {
     
-    let layout = MSMessageTemplateLayout()
-    layout.image = image
-    layout.caption = caption
+    let templateLayout = MSMessageTemplateLayout()
+    templateLayout.image = image
+    templateLayout.caption = caption
     
     let message = MSMessage(session: session ?? MSSession())
     //        let message = MSMessage()
     message.url = URL(string: "\(coordinate.latitude):\(coordinate.longitude)")
-    message.layout = layout
+
+    let liveLayout = MSMessageLiveLayout(alternateLayout: templateLayout)
+    message.layout = liveLayout
     
     return message
+  }
+  
+  override func contentSizeThatFits(_ size: CGSize) -> CGSize {
+    return CGSize(width: size.width, height: 150)
   }
 }
 
@@ -131,7 +147,7 @@ extension MessagesViewController: SendViewControllerDelegate {
 //    let image = viewController.screenshot()
     let image: UIImage? = nil
     
-    let message = composeMessage(coordinate: coordinate, caption: "Your turn!", image: image, session: conversation.selectedMessage?.session)
+    let message = composeMessage(coordinate: coordinate, caption: "I'm here", image: image, session: conversation.selectedMessage?.session)
     
     conversation.send(message) { error in
       if let error = error {

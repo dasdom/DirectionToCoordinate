@@ -50,7 +50,7 @@ class SendViewController: UIViewController {
   
   func updateUI(for location: CLLocation?) {
     if let location = location {
-      self.contentView.label.text = "\(location.coordinate.latitude), \(location.coordinate.longitude)"
+      self.contentView.label.text = String(format: "%.5lf  %.5lf", location.coordinate.latitude, location.coordinate.longitude)
       self.contentView.setNeedsLayout()
       
       self.coordinate = location.coordinate
