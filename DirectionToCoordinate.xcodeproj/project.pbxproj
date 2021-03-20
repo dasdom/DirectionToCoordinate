@@ -13,6 +13,8 @@
 		F221BD5426049579004907E4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F221BD5326049579004907E4 /* Preview Assets.xcassets */; };
 		F221BD5F26049579004907E4 /* DirectionToCoordinateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD5E26049579004907E4 /* DirectionToCoordinateTests.swift */; };
 		F221BD6A26049579004907E4 /* DirectionToCoordinateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD6926049579004907E4 /* DirectionToCoordinateUITests.swift */; };
+		F221BD7C26049787004907E4 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD7B26049787004907E4 /* LocationProvider.swift */; };
+		F221BD82260499E0004907E4 /* CLLocationCoordinate2DExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD81260499E0004907E4 /* CLLocationCoordinate2DExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		F221BD6526049579004907E4 /* DirectionToCoordinateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DirectionToCoordinateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F221BD6926049579004907E4 /* DirectionToCoordinateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionToCoordinateUITests.swift; sourceTree = "<group>"; };
 		F221BD6B26049579004907E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F221BD7B26049787004907E4 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
+		F221BD81260499E0004907E4 /* CLLocationCoordinate2DExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2DExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 			children = (
 				F221BD4C26049578004907E4 /* DirectionToCoordinateApp.swift */,
 				F221BD4E26049578004907E4 /* ContentView.swift */,
+				F221BD7B26049787004907E4 /* LocationProvider.swift */,
+				F221BD81260499E0004907E4 /* CLLocationCoordinate2DExtension.swift */,
 				F221BD5026049579004907E4 /* Assets.xcassets */,
 				F221BD5526049579004907E4 /* Info.plist */,
 				F221BD5226049579004907E4 /* Preview Content */,
@@ -194,6 +200,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
+				ORGANIZATIONNAME = dasdom;
 				TargetAttributes = {
 					F221BD4826049578004907E4 = {
 						CreatedOnToolsVersion = 12.4;
@@ -259,8 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F221BD7C26049787004907E4 /* LocationProvider.swift in Sources */,
 				F221BD4F26049578004907E4 /* ContentView.swift in Sources */,
 				F221BD4D26049578004907E4 /* DirectionToCoordinateApp.swift in Sources */,
+				F221BD82260499E0004907E4 /* CLLocationCoordinate2DExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@ struct DirectionToCoordinateApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+              .environmentObject(LocationProvider())
         }
     }
 }
