@@ -15,6 +15,17 @@
 		F221BD6A26049579004907E4 /* DirectionToCoordinateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD6926049579004907E4 /* DirectionToCoordinateUITests.swift */; };
 		F221BD7C26049787004907E4 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD7B26049787004907E4 /* LocationProvider.swift */; };
 		F221BD82260499E0004907E4 /* CLLocationCoordinate2DExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD81260499E0004907E4 /* CLLocationCoordinate2DExtension.swift */; };
+		F26A01232605DD1A003EEBE7 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26A01222605DD1A003EEBE7 /* Messages.framework */; };
+		F26A01262605DD1A003EEBE7 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A01252605DD1A003EEBE7 /* MessagesViewController.swift */; };
+		F26A01292605DD1A003EEBE7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F26A01272605DD1A003EEBE7 /* MainInterface.storyboard */; };
+		F26A012B2605DD1B003EEBE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F26A012A2605DD1B003EEBE7 /* Assets.xcassets */; };
+		F26A012F2605DD1B003EEBE7 /* HeadingToMe.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F26A01202605DD1A003EEBE7 /* HeadingToMe.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F26A01382605DDEC003EEBE7 /* CLLocationCoordinate2DExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD81260499E0004907E4 /* CLLocationCoordinate2DExtension.swift */; };
+		F26A01392605DDEC003EEBE7 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD7B26049787004907E4 /* LocationProvider.swift */; };
+		F26A01442605DE27003EEBE7 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A01422605DE27003EEBE7 /* SendViewController.swift */; };
+		F26A01452605DE27003EEBE7 /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A01432605DE27003EEBE7 /* SendView.swift */; };
+		F26A014D2605DE44003EEBE7 /* DirectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A014B2605DE44003EEBE7 /* DirectionView.swift */; };
+		F26A014E2605DE44003EEBE7 /* DirectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A014C2605DE44003EEBE7 /* DirectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +43,28 @@
 			remoteGlobalIDString = F221BD4826049578004907E4;
 			remoteInfo = DirectionToCoordinate;
 		};
+		F26A012D2605DD1B003EEBE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F221BD4126049578004907E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F26A011F2605DD1A003EEBE7;
+			remoteInfo = HeadingToMe;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F26A01302605DD1B003EEBE7 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F26A012F2605DD1B003EEBE7 /* HeadingToMe.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F221BD4926049578004907E4 /* DirectionToCoordinate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DirectionToCoordinate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +81,16 @@
 		F221BD6B26049579004907E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F221BD7B26049787004907E4 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		F221BD81260499E0004907E4 /* CLLocationCoordinate2DExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2DExtension.swift; sourceTree = "<group>"; };
+		F26A01202605DD1A003EEBE7 /* HeadingToMe.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HeadingToMe.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F26A01222605DD1A003EEBE7 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
+		F26A01252605DD1A003EEBE7 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		F26A01282605DD1A003EEBE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		F26A012A2605DD1B003EEBE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F26A012C2605DD1B003EEBE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F26A01422605DE27003EEBE7 /* SendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
+		F26A01432605DE27003EEBE7 /* SendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
+		F26A014B2605DE44003EEBE7 /* DirectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionView.swift; sourceTree = "<group>"; };
+		F26A014C2605DE44003EEBE7 /* DirectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +115,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F26A011D2605DD1A003EEBE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F26A01232605DD1A003EEBE7 /* Messages.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -82,6 +132,8 @@
 				F221BD4B26049578004907E4 /* DirectionToCoordinate */,
 				F221BD5D26049579004907E4 /* DirectionToCoordinateTests */,
 				F221BD6826049579004907E4 /* DirectionToCoordinateUITests */,
+				F26A01242605DD1A003EEBE7 /* HeadingToMe */,
+				F26A01212605DD1A003EEBE7 /* Frameworks */,
 				F221BD4A26049578004907E4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +144,7 @@
 				F221BD4926049578004907E4 /* DirectionToCoordinate.app */,
 				F221BD5A26049579004907E4 /* DirectionToCoordinateTests.xctest */,
 				F221BD6526049579004907E4 /* DirectionToCoordinateUITests.xctest */,
+				F26A01202605DD1A003EEBE7 /* HeadingToMe.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,6 +189,45 @@
 			path = DirectionToCoordinateUITests;
 			sourceTree = "<group>";
 		};
+		F26A01212605DD1A003EEBE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F26A01222605DD1A003EEBE7 /* Messages.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F26A01242605DD1A003EEBE7 /* HeadingToMe */ = {
+			isa = PBXGroup;
+			children = (
+				F26A01252605DD1A003EEBE7 /* MessagesViewController.swift */,
+				F26A01272605DD1A003EEBE7 /* MainInterface.storyboard */,
+				F26A014A2605DE44003EEBE7 /* Direction */,
+				F26A01412605DE27003EEBE7 /* Send */,
+				F26A012A2605DD1B003EEBE7 /* Assets.xcassets */,
+				F26A012C2605DD1B003EEBE7 /* Info.plist */,
+			);
+			path = HeadingToMe;
+			sourceTree = "<group>";
+		};
+		F26A01412605DE27003EEBE7 /* Send */ = {
+			isa = PBXGroup;
+			children = (
+				F26A01422605DE27003EEBE7 /* SendViewController.swift */,
+				F26A01432605DE27003EEBE7 /* SendView.swift */,
+			);
+			path = Send;
+			sourceTree = "<group>";
+		};
+		F26A014A2605DE44003EEBE7 /* Direction */ = {
+			isa = PBXGroup;
+			children = (
+				F26A014C2605DE44003EEBE7 /* DirectionViewController.swift */,
+				F26A014B2605DE44003EEBE7 /* DirectionView.swift */,
+			);
+			path = Direction;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,10 +238,12 @@
 				F221BD4526049578004907E4 /* Sources */,
 				F221BD4626049578004907E4 /* Frameworks */,
 				F221BD4726049578004907E4 /* Resources */,
+				F26A01302605DD1B003EEBE7 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F26A012E2605DD1B003EEBE7 /* PBXTargetDependency */,
 			);
 			name = DirectionToCoordinate;
 			productName = DirectionToCoordinate;
@@ -192,6 +286,23 @@
 			productReference = F221BD6526049579004907E4 /* DirectionToCoordinateUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		F26A011F2605DD1A003EEBE7 /* HeadingToMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F26A01332605DD1B003EEBE7 /* Build configuration list for PBXNativeTarget "HeadingToMe" */;
+			buildPhases = (
+				F26A011C2605DD1A003EEBE7 /* Sources */,
+				F26A011D2605DD1A003EEBE7 /* Frameworks */,
+				F26A011E2605DD1A003EEBE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HeadingToMe;
+			productName = HeadingToMe;
+			productReference = F26A01202605DD1A003EEBE7 /* HeadingToMe.appex */;
+			productType = "com.apple.product-type.app-extension.messages";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -213,6 +324,9 @@
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = F221BD4826049578004907E4;
 					};
+					F26A011F2605DD1A003EEBE7 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 				};
 			};
 			buildConfigurationList = F221BD4426049578004907E4 /* Build configuration list for PBXProject "DirectionToCoordinate" */;
@@ -231,6 +345,7 @@
 				F221BD4826049578004907E4 /* DirectionToCoordinate */,
 				F221BD5926049579004907E4 /* DirectionToCoordinateTests */,
 				F221BD6426049579004907E4 /* DirectionToCoordinateUITests */,
+				F26A011F2605DD1A003EEBE7 /* HeadingToMe */,
 			);
 		};
 /* End PBXProject section */
@@ -256,6 +371,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F26A011E2605DD1A003EEBE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F26A012B2605DD1B003EEBE7 /* Assets.xcassets in Resources */,
+				F26A01292605DD1A003EEBE7 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +413,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F26A011C2605DD1A003EEBE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F26A014D2605DE44003EEBE7 /* DirectionView.swift in Sources */,
+				F26A01442605DE27003EEBE7 /* SendViewController.swift in Sources */,
+				F26A01392605DDEC003EEBE7 /* LocationProvider.swift in Sources */,
+				F26A01262605DD1A003EEBE7 /* MessagesViewController.swift in Sources */,
+				F26A01452605DE27003EEBE7 /* SendView.swift in Sources */,
+				F26A01382605DDEC003EEBE7 /* CLLocationCoordinate2DExtension.swift in Sources */,
+				F26A014E2605DE44003EEBE7 /* DirectionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -302,7 +440,23 @@
 			target = F221BD4826049578004907E4 /* DirectionToCoordinate */;
 			targetProxy = F221BD6626049579004907E4 /* PBXContainerItemProxy */;
 		};
+		F26A012E2605DD1B003EEBE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F26A011F2605DD1A003EEBE7 /* HeadingToMe */;
+			targetProxy = F26A012D2605DD1B003EEBE7 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F26A01272605DD1A003EEBE7 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F26A01282605DD1A003EEBE7 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F221BD6C26049579004907E4 /* Debug */ = {
@@ -424,6 +578,7 @@
 		F221BD6F26049579004907E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -446,6 +601,7 @@
 		F221BD7026049579004907E4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -549,6 +705,46 @@
 			};
 			name = Release;
 		};
+		F26A01312605DD1B003EEBE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q6PD97MRX4;
+				INFOPLIST_FILE = HeadingToMe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.DirectionToCoordinate.HeadingToMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F26A01322605DD1B003EEBE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q6PD97MRX4;
+				INFOPLIST_FILE = HeadingToMe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.DirectionToCoordinate.HeadingToMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -584,6 +780,15 @@
 			buildConfigurations = (
 				F221BD7526049579004907E4 /* Debug */,
 				F221BD7626049579004907E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F26A01332605DD1B003EEBE7 /* Build configuration list for PBXNativeTarget "HeadingToMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F26A01312605DD1B003EEBE7 /* Debug */,
+				F26A01322605DD1B003EEBE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

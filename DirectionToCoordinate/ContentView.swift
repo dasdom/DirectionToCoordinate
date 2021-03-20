@@ -70,6 +70,7 @@ struct ContentView: View {
     })
   }
   
+  // https://www.hackingwithswift.com/books/ios-swiftui/paths-vs-shapes-in-swiftui
   struct Triangle: Shape {
       func path(in rect: CGRect) -> Path {
           var path = Path()
