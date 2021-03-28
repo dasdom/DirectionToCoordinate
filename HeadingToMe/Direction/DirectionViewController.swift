@@ -47,6 +47,8 @@ class DirectionViewController: UIViewController {
     super.viewWillAppear(animated)
     
     locationProvider.start()
+    
+    contentView.mapView.isRotateEnabled = !hideDirectionAndDistance
   }
   
   func updateUI(for location: CLLocation?) {
@@ -58,8 +60,10 @@ class DirectionViewController: UIViewController {
       let distance = location.distance(from: otherLocation)
       contentView.label.text = String(format: "%.2lf km", distance / 1000)
       
-      let region = MKCoordinateRegion(center: otherLocation.coordinate, latitudinalMeters: 300, longitudinalMeters: 300)
-      contentView.mapView.setRegion(region, animated: true)
+      let mid = coordinate.center(to: location.coordinate)
+      let shownMeters = max(1000, 1.2 * distance)
+      let region = MKCoordinateRegion(center: mid, latitudinalMeters: shownMeters, longitudinalMeters: shownMeters)
+      contentView.mapView.setRegion(region, animated: false)
     }
   }
   
@@ -67,6 +71,7 @@ class DirectionViewController: UIViewController {
     if let heading = heading {
       let rotation = deg2rad(bearing() - heading.magneticHeading)
       contentView.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(rotation))
+      contentView.mapView.camera.heading = heading.magneticHeading
     }
   }
   

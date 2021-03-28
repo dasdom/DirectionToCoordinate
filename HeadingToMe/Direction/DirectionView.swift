@@ -16,9 +16,12 @@ class DirectionView: UIView {
     mapView = MKMapView()
     mapView.translatesAutoresizingMaskIntoConstraints = false
     mapView.alpha = 0.5
+    mapView.isUserInteractionEnabled = false
+    mapView.isScrollEnabled = false
     
     imageView = UIImageView(image: UIImage(systemName: "location.north.fill"))
     imageView.contentMode = .scaleAspectFit
+    imageView.tintColor = UIColor.label
     
     label = UILabel()
     label.text = "Missing"

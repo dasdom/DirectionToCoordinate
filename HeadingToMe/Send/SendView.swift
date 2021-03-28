@@ -21,6 +21,8 @@ class SendView: UIView {
     label = UILabel()
     label.numberOfLines = 0
     label.textAlignment = .center
+    label.font = .preferredFont(forTextStyle: .footnote)
+    label.textColor = UIColor.secondaryLabel
     
     sendButton = UIButton()
     sendButton.setTitle("Send", for: .normal)

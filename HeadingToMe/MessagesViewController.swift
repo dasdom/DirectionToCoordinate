@@ -82,6 +82,7 @@ class MessagesViewController: MSMessagesAppViewController {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let directionController = DirectionViewController(coordinate: coordinate, hideDirectionAndDistance: hideDirectionAndDistance)
 //        let directionController = DirectionViewController(coordinate: coordinate)
+        directionController.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(expand(_:))))
         controller = directionController
       } else {
         controller = UIViewController()
@@ -128,14 +129,19 @@ class MessagesViewController: MSMessagesAppViewController {
     //        let message = MSMessage()
     message.url = URL(string: "\(coordinate.latitude):\(coordinate.longitude)")
 
+//    message.layout = templateLayout
     let liveLayout = MSMessageLiveLayout(alternateLayout: templateLayout)
     message.layout = liveLayout
-    
+
     return message
   }
   
   override func contentSizeThatFits(_ size: CGSize) -> CGSize {
     return CGSize(width: size.width, height: 150)
+  }
+  
+  @objc func expand(_ sender: UITapGestureRecognizer) {
+    requestPresentationStyle(.expanded)
   }
 }
 
@@ -149,11 +155,13 @@ extension MessagesViewController: SendViewControllerDelegate {
     
     let message = composeMessage(coordinate: coordinate, caption: "I'm here", image: image, session: conversation.selectedMessage?.session)
     
-    conversation.send(message) { error in
+    conversation.insert(message) { error in
       if let error = error {
         print(error)
       }
       
     }
+  
+    dismiss()
   }
 }
