@@ -90,7 +90,7 @@ struct ContentView: View {
             Text("\(error.localizedDescription)")
               .padding()
           } else {
-            Text(String(format: "%.2lf km", distance/1000))
+            Text(String(format: "%.3lf km", distance/1000))
               .font(.headline)
               .padding()
           }

@@ -67,16 +67,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F221BD4926049578004907E4 /* DirectionToCoordinate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DirectionToCoordinate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F221BD4926049578004907E4 /* Heada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heada.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F221BD4C26049578004907E4 /* DirectionToCoordinateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionToCoordinateApp.swift; sourceTree = "<group>"; };
 		F221BD4E26049578004907E4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F221BD5026049579004907E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F221BD5326049579004907E4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F221BD5526049579004907E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F221BD5A26049579004907E4 /* DirectionToCoordinateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DirectionToCoordinateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F221BD5A26049579004907E4 /* HeadaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeadaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F221BD5E26049579004907E4 /* DirectionToCoordinateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionToCoordinateTests.swift; sourceTree = "<group>"; };
 		F221BD6026049579004907E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F221BD6526049579004907E4 /* DirectionToCoordinateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DirectionToCoordinateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F221BD6526049579004907E4 /* HeadaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeadaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F221BD6926049579004907E4 /* DirectionToCoordinateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionToCoordinateUITests.swift; sourceTree = "<group>"; };
 		F221BD6B26049579004907E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F221BD7B26049787004907E4 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		F221BD4026049578004907E4 = {
 			isa = PBXGroup;
 			children = (
-				F221BD4B26049578004907E4 /* DirectionToCoordinate */,
+				F221BD4B26049578004907E4 /* Heada */,
 				F221BD5D26049579004907E4 /* DirectionToCoordinateTests */,
 				F221BD6826049579004907E4 /* DirectionToCoordinateUITests */,
 				F26A01242605DD1A003EEBE7 /* HeadingToMe */,
@@ -141,15 +141,15 @@
 		F221BD4A26049578004907E4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F221BD4926049578004907E4 /* DirectionToCoordinate.app */,
-				F221BD5A26049579004907E4 /* DirectionToCoordinateTests.xctest */,
-				F221BD6526049579004907E4 /* DirectionToCoordinateUITests.xctest */,
+				F221BD4926049578004907E4 /* Heada.app */,
+				F221BD5A26049579004907E4 /* HeadaTests.xctest */,
+				F221BD6526049579004907E4 /* HeadaUITests.xctest */,
 				F26A01202605DD1A003EEBE7 /* HeadingToMe.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F221BD4B26049578004907E4 /* DirectionToCoordinate */ = {
+		F221BD4B26049578004907E4 /* Heada */ = {
 			isa = PBXGroup;
 			children = (
 				F221BD4C26049578004907E4 /* DirectionToCoordinateApp.swift */,
@@ -160,7 +160,7 @@
 				F221BD5526049579004907E4 /* Info.plist */,
 				F221BD5226049579004907E4 /* Preview Content */,
 			);
-			path = DirectionToCoordinate;
+			path = Heada;
 			sourceTree = "<group>";
 		};
 		F221BD5226049579004907E4 /* Preview Content */ = {
@@ -231,9 +231,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F221BD4826049578004907E4 /* DirectionToCoordinate */ = {
+		F221BD4826049578004907E4 /* Heada */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F221BD6E26049579004907E4 /* Build configuration list for PBXNativeTarget "DirectionToCoordinate" */;
+			buildConfigurationList = F221BD6E26049579004907E4 /* Build configuration list for PBXNativeTarget "Heada" */;
 			buildPhases = (
 				F221BD4526049578004907E4 /* Sources */,
 				F221BD4626049578004907E4 /* Frameworks */,
@@ -245,14 +245,14 @@
 			dependencies = (
 				F26A012E2605DD1B003EEBE7 /* PBXTargetDependency */,
 			);
-			name = DirectionToCoordinate;
+			name = Heada;
 			productName = DirectionToCoordinate;
-			productReference = F221BD4926049578004907E4 /* DirectionToCoordinate.app */;
+			productReference = F221BD4926049578004907E4 /* Heada.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F221BD5926049579004907E4 /* DirectionToCoordinateTests */ = {
+		F221BD5926049579004907E4 /* HeadaTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F221BD7126049579004907E4 /* Build configuration list for PBXNativeTarget "DirectionToCoordinateTests" */;
+			buildConfigurationList = F221BD7126049579004907E4 /* Build configuration list for PBXNativeTarget "HeadaTests" */;
 			buildPhases = (
 				F221BD5626049579004907E4 /* Sources */,
 				F221BD5726049579004907E4 /* Frameworks */,
@@ -263,14 +263,14 @@
 			dependencies = (
 				F221BD5C26049579004907E4 /* PBXTargetDependency */,
 			);
-			name = DirectionToCoordinateTests;
+			name = HeadaTests;
 			productName = DirectionToCoordinateTests;
-			productReference = F221BD5A26049579004907E4 /* DirectionToCoordinateTests.xctest */;
+			productReference = F221BD5A26049579004907E4 /* HeadaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		F221BD6426049579004907E4 /* DirectionToCoordinateUITests */ = {
+		F221BD6426049579004907E4 /* HeadaUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F221BD7426049579004907E4 /* Build configuration list for PBXNativeTarget "DirectionToCoordinateUITests" */;
+			buildConfigurationList = F221BD7426049579004907E4 /* Build configuration list for PBXNativeTarget "HeadaUITests" */;
 			buildPhases = (
 				F221BD6126049579004907E4 /* Sources */,
 				F221BD6226049579004907E4 /* Frameworks */,
@@ -281,9 +281,9 @@
 			dependencies = (
 				F221BD6726049579004907E4 /* PBXTargetDependency */,
 			);
-			name = DirectionToCoordinateUITests;
+			name = HeadaUITests;
 			productName = DirectionToCoordinateUITests;
-			productReference = F221BD6526049579004907E4 /* DirectionToCoordinateUITests.xctest */;
+			productReference = F221BD6526049579004907E4 /* HeadaUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		F26A011F2605DD1A003EEBE7 /* HeadingToMe */ = {
@@ -329,7 +329,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F221BD4426049578004907E4 /* Build configuration list for PBXProject "DirectionToCoordinate" */;
+			buildConfigurationList = F221BD4426049578004907E4 /* Build configuration list for PBXProject "Heada" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -342,9 +342,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F221BD4826049578004907E4 /* DirectionToCoordinate */,
-				F221BD5926049579004907E4 /* DirectionToCoordinateTests */,
-				F221BD6426049579004907E4 /* DirectionToCoordinateUITests */,
+				F221BD4826049578004907E4 /* Heada */,
+				F221BD5926049579004907E4 /* HeadaTests */,
+				F221BD6426049579004907E4 /* HeadaUITests */,
 				F26A011F2605DD1A003EEBE7 /* HeadingToMe */,
 			);
 		};
@@ -432,12 +432,12 @@
 /* Begin PBXTargetDependency section */
 		F221BD5C26049579004907E4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F221BD4826049578004907E4 /* DirectionToCoordinate */;
+			target = F221BD4826049578004907E4 /* Heada */;
 			targetProxy = F221BD5B26049579004907E4 /* PBXContainerItemProxy */;
 		};
 		F221BD6726049579004907E4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F221BD4826049578004907E4 /* DirectionToCoordinate */;
+			target = F221BD4826049578004907E4 /* Heada */;
 			targetProxy = F221BD6626049579004907E4 /* PBXContainerItemProxy */;
 		};
 		F26A012E2605DD1B003EEBE7 /* PBXTargetDependency */ = {
@@ -582,10 +582,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"DirectionToCoordinate/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Heada/Preview Content\"";
 				DEVELOPMENT_TEAM = Q6PD97MRX4;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = DirectionToCoordinate/Info.plist;
+				INFOPLIST_FILE = Heada/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -605,10 +605,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"DirectionToCoordinate/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Heada/Preview Content\"";
 				DEVELOPMENT_TEAM = Q6PD97MRX4;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = DirectionToCoordinate/Info.plist;
+				INFOPLIST_FILE = Heada/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -639,7 +639,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DirectionToCoordinate.app/DirectionToCoordinate";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Heada.app/Heada";
 			};
 			name = Debug;
 		};
@@ -661,7 +661,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DirectionToCoordinate.app/DirectionToCoordinate";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Heada.app/Heada";
 			};
 			name = Release;
 		};
@@ -750,7 +750,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F221BD4426049578004907E4 /* Build configuration list for PBXProject "DirectionToCoordinate" */ = {
+		F221BD4426049578004907E4 /* Build configuration list for PBXProject "Heada" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F221BD6C26049579004907E4 /* Debug */,
@@ -759,7 +759,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F221BD6E26049579004907E4 /* Build configuration list for PBXNativeTarget "DirectionToCoordinate" */ = {
+		F221BD6E26049579004907E4 /* Build configuration list for PBXNativeTarget "Heada" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F221BD6F26049579004907E4 /* Debug */,
@@ -768,7 +768,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F221BD7126049579004907E4 /* Build configuration list for PBXNativeTarget "DirectionToCoordinateTests" */ = {
+		F221BD7126049579004907E4 /* Build configuration list for PBXNativeTarget "HeadaTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F221BD7226049579004907E4 /* Debug */,
@@ -777,7 +777,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F221BD7426049579004907E4 /* Build configuration list for PBXNativeTarget "DirectionToCoordinateUITests" */ = {
+		F221BD7426049579004907E4 /* Build configuration list for PBXNativeTarget "HeadaUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F221BD7526049579004907E4 /* Debug */,
