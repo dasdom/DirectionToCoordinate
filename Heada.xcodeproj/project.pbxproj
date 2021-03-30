@@ -26,6 +26,7 @@
 		F26A01452605DE27003EEBE7 /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A01432605DE27003EEBE7 /* SendView.swift */; };
 		F26A014D2605DE44003EEBE7 /* DirectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A014B2605DE44003EEBE7 /* DirectionView.swift */; };
 		F26A014E2605DE44003EEBE7 /* DirectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A014C2605DE44003EEBE7 /* DirectionViewController.swift */; };
+		F26A0185261394A6003EEBE7 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A0184261394A6003EEBE7 /* Annotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		F26A01432605DE27003EEBE7 /* SendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
 		F26A014B2605DE44003EEBE7 /* DirectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionView.swift; sourceTree = "<group>"; };
 		F26A014C2605DE44003EEBE7 /* DirectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionViewController.swift; sourceTree = "<group>"; };
+		F26A0184261394A6003EEBE7 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +226,7 @@
 			children = (
 				F26A014C2605DE44003EEBE7 /* DirectionViewController.swift */,
 				F26A014B2605DE44003EEBE7 /* DirectionView.swift */,
+				F26A0184261394A6003EEBE7 /* Annotation.swift */,
 			);
 			path = Direction;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				F26A01262605DD1A003EEBE7 /* MessagesViewController.swift in Sources */,
 				F26A01452605DE27003EEBE7 /* SendView.swift in Sources */,
 				F26A01382605DDEC003EEBE7 /* CLLocationCoordinate2DExtension.swift in Sources */,
+				F26A0185261394A6003EEBE7 /* Annotation.swift in Sources */,
 				F26A014E2605DE44003EEBE7 /* DirectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

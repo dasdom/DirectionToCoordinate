@@ -27,5 +27,7 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.message-payload-provider</string>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The location is used to be sent to your chat partner.</string>
 </dict>
 </plist>

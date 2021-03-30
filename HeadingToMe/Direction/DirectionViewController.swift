@@ -56,6 +56,7 @@ class DirectionViewController: UIViewController {
     self.location = location
     
     if let location = location {
+      let mapView = contentView.mapView
       let otherLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
       let distance = location.distance(from: otherLocation)
       contentView.label.text = String(format: "%.2lf km", distance / 1000)
@@ -63,7 +64,12 @@ class DirectionViewController: UIViewController {
       let mid = coordinate.center(to: location.coordinate)
       let shownMeters = max(1000, 1.2 * distance)
       let region = MKCoordinateRegion(center: mid, latitudinalMeters: shownMeters, longitudinalMeters: shownMeters)
-      contentView.mapView.setRegion(region, animated: false)
+      mapView.setRegion(region, animated: false)
+      
+      mapView.removeAnnotations(mapView.annotations)
+      
+      mapView.addAnnotation(Annotation(coordinate: location.coordinate))
+      mapView.addAnnotation(Annotation(coordinate: coordinate))
     }
   }
   

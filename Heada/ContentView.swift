@@ -12,8 +12,6 @@ struct ContentView: View {
   @State var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
   @State var error: Error?
   @State var lastAnnouncedAngle: Int = 0
-//  @State var region: MKCoordinateRegion = MKCoordinateRegion()
-//  @State var annotationItems: [CLLocationCoordinate2D] = []
   @EnvironmentObject private var locationProvider: LocationProvider
   
   var location: CLLocation {
@@ -37,10 +35,16 @@ struct ContentView: View {
   var rotationAngle: Double {
     let angle = bearing - (locationProvider.heading?.magneticHeading ?? 0)
     let angleInt = Int(angle)
-    print("\(angleInt), \(angleInt % 10 == 0)")
     if angleInt % 10 == 0 {
-      print("angle: \(angleInt)")
-      UIAccessibility.post(notification: .announcement, argument: "angle: \(angleInt)")
+      let announcement: String
+      if angleInt < 0 {
+        announcement = "\(abs(angleInt)) degrees to the right"
+      } else if angleInt > 0 {
+        announcement = "\(abs(angleInt)) degrees to the left"
+      } else {
+        announcement = "\(address) is \(distance) km straight ahead"
+      }
+      UIAccessibility.post(notification: .announcement, argument: announcement)
     }
     return angle
   }
@@ -98,6 +102,7 @@ struct ContentView: View {
         
       }
       .padding()
+      .accessibilityHidden(true)
       //      .background(Color(UIColor.systemBackground).opacity(0.7))
       .onAppear(perform: {
         locationProvider.start()
