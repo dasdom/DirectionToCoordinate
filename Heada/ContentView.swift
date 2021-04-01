@@ -9,117 +9,95 @@ import MapKit
 struct ContentView: View {
   
   @State var address: String = ""
-  @State var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
+  @State var coordinate: CLLocationCoordinate2D? = nil
   @State var error: Error?
-  @State var lastAnnouncedAngle: Int = 0
+  @State var angleOfLastAnnouncement: Int = 0
   @EnvironmentObject private var locationProvider: LocationProvider
   
-  var location: CLLocation {
+  var location: CLLocation? {
+    guard let coordinate = coordinate else {
+      return nil
+    }
     return CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
   }
   var bearing: Double {
-    if let myCoordinate = locationProvider.location?.coordinate {
-      return myCoordinate.bearing(to: coordinate)
-    } else {
+    guard let coordinate = coordinate,
+          let myCoordinate = locationProvider.location?.coordinate else {
       return 0
     }
+    return myCoordinate.bearing(to: coordinate)
   }
   var distance: Double {
-    if let myLocation = locationProvider.location {
-      let distance = myLocation.distance(from: location)
-      return distance
-    } else {
+    guard let myLocation = locationProvider.location,
+          let location = location else {
       return 0
     }
+    let distance = myLocation.distance(from: location)
+    return distance
   }
   var rotationAngle: Double {
     let angle = bearing - (locationProvider.heading?.magneticHeading ?? 0)
     let angleInt = Int(angle)
-    if angleInt % 10 == 0 {
+    if angleInt % 10 == 0 && angleInt != angleOfLastAnnouncement {
       let announcement: String
       if angleInt < 0 {
-        announcement = "\(abs(angleInt)) degrees to the right"
-      } else if angleInt > 0 {
         announcement = "\(abs(angleInt)) degrees to the left"
+      } else if angleInt > 0 {
+        announcement = "\(abs(angleInt)) degrees to the right"
       } else {
-        announcement = "\(address) is \(distance) km straight ahead"
+        announcement = "\(address) is \(Int(distance/1000)) km straight ahead"
       }
+      angleOfLastAnnouncement = angleInt
       UIAccessibility.post(notification: .announcement, argument: announcement)
     }
     return angle
   }
   
   var body: some View {
-//    VStack {
-//      Map(coordinateRegion: $region, interactionModes: .all, annotationItems: annotationItems, annotationContent: { item -> MapMarker in
-//        let color: Color?
-//        if item.id == self.coordinate.id {
-//          color = .red
-//        } else {
-//          color = .gray
-//        }
-//        return MapMarker(coordinate: item, tint: color)
-//      })
+    VStack {
+      VStack {
+        TextField("Put in an address or a city.", text: $address, onCommit: {
+          CLGeocoder().geocodeAddressString(address) { placementMarks, error in
+            if let placementMark = placementMarks?.first, let location = placementMark.location {
+              
+              coordinate = location.coordinate
+            }
+          }
+        })
+        .multilineTextAlignment(.center)
+        
+        if let coordinate = coordinate, abs(coordinate.latitude) > 0.001, abs(coordinate.longitude) > 0.001 {
+          Text("\(coordinate.latitude)  \(coordinate.longitude)")
+            .font(.footnote)
+            .foregroundColor(Color(UIColor.secondaryLabel))
+        }
+      }
       
       VStack {
-        VStack {
-          TextField("Put in an address or a city.", text: $address, onCommit: {
-            CLGeocoder().geocodeAddressString(address) { placementMarks, error in
-              if let placementMark = placementMarks?.first, let location = placementMark.location {
-                
-                coordinate = location.coordinate
-                
-//                updateAnnotations()
-              }
-            }
-          })
-          .multilineTextAlignment(.center)
-          
-          if abs(coordinate.latitude) > 0.001, abs(coordinate.longitude) > 0.001 {
-            Text("\(coordinate.latitude)  \(coordinate.longitude)")
-              .font(.footnote)
-              .foregroundColor(Color(UIColor.secondaryLabel))
-          }
-        }
+        Image(systemName: "location.north.fill")
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+          .rotationEffect(Angle(degrees: rotationAngle))
+          .frame(height: 150)
+          .padding()
         
-        VStack {
-          Image(systemName: "location.north.fill")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .rotationEffect(Angle(degrees: rotationAngle))
-            .frame(height: 150)
+        if let error = error {
+          Text("\(error.localizedDescription)")
             .padding()
-          
-          if let error = error {
-            Text("\(error.localizedDescription)")
-              .padding()
-          } else {
-            Text(String(format: "%.3lf km", distance/1000))
-              .font(.headline)
-              .padding()
-          }
+        } else if distance > 0 {
+          Text(String(format: "%.3lf km", distance/1000))
+            .font(.headline)
+            .padding()
         }
-        
       }
-      .padding()
-      .accessibilityHidden(true)
-      //      .background(Color(UIColor.systemBackground).opacity(0.7))
-      .onAppear(perform: {
-        locationProvider.start()
-//        updateAnnotations()
-      })
-//    }
+      
+    }
+    .padding()
+    .accessibilityHidden(true)
+    .onAppear(perform: {
+      locationProvider.start()
+    })
   }
-  
-//  func updateAnnotations() {
-//    if let myCoordinate = locationProvider.location?.coordinate {
-//      annotationItems = [coordinate]
-//      annotationItems.append(myCoordinate)
-//
-//      let mid = myCoordinate.center(to: coordinate)
-//      region = MKCoordinateRegion(center: mid, latitudinalMeters: 1.2 * distance, longitudinalMeters: 1.2 * distance)
-//    }
-//  }
 }
 
 // https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-annotations-in-a-map-view
