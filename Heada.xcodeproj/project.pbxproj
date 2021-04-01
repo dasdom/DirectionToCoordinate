@@ -15,6 +15,7 @@
 		F221BD6A26049579004907E4 /* DirectionToCoordinateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD6926049579004907E4 /* DirectionToCoordinateUITests.swift */; };
 		F221BD7C26049787004907E4 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD7B26049787004907E4 /* LocationProvider.swift */; };
 		F221BD82260499E0004907E4 /* CLLocationCoordinate2DExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD81260499E0004907E4 /* CLLocationCoordinate2DExtension.swift */; };
+		F24541602616628E003FAA83 /* Announcer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245415F2616628E003FAA83 /* Announcer.swift */; };
 		F26A01232605DD1A003EEBE7 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26A01222605DD1A003EEBE7 /* Messages.framework */; };
 		F26A01262605DD1A003EEBE7 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A01252605DD1A003EEBE7 /* MessagesViewController.swift */; };
 		F26A01292605DD1A003EEBE7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F26A01272605DD1A003EEBE7 /* MainInterface.storyboard */; };
@@ -82,6 +83,7 @@
 		F221BD6B26049579004907E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F221BD7B26049787004907E4 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		F221BD81260499E0004907E4 /* CLLocationCoordinate2DExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2DExtension.swift; sourceTree = "<group>"; };
+		F245415F2616628E003FAA83 /* Announcer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcer.swift; sourceTree = "<group>"; };
 		F26A01202605DD1A003EEBE7 /* HeadingToMe.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HeadingToMe.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F26A01222605DD1A003EEBE7 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		F26A01252605DD1A003EEBE7 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			children = (
 				F221BD4C26049578004907E4 /* DirectionToCoordinateApp.swift */,
 				F221BD4E26049578004907E4 /* ContentView.swift */,
+				F245415F2616628E003FAA83 /* Announcer.swift */,
 				F221BD7B26049787004907E4 /* LocationProvider.swift */,
 				F221BD81260499E0004907E4 /* CLLocationCoordinate2DExtension.swift */,
 				F221BD5026049579004907E4 /* Assets.xcassets */,
@@ -396,6 +399,7 @@
 				F221BD7C26049787004907E4 /* LocationProvider.swift in Sources */,
 				F221BD4F26049578004907E4 /* ContentView.swift in Sources */,
 				F221BD4D26049578004907E4 /* DirectionToCoordinateApp.swift in Sources */,
+				F24541602616628E003FAA83 /* Announcer.swift in Sources */,
 				F221BD82260499E0004907E4 /* CLLocationCoordinate2DExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

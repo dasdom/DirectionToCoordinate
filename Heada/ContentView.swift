@@ -9,65 +9,27 @@ import MapKit
 struct ContentView: View {
   
   @State var address: String = ""
-  @State var coordinate: CLLocationCoordinate2D? = nil
   @State var error: Error?
-  @State var angleOfLastAnnouncement: Int = 0
   @EnvironmentObject private var locationProvider: LocationProvider
+  let announcer = Announcer()
   
-  var location: CLLocation? {
-    guard let coordinate = coordinate else {
-      return nil
-    }
-    return CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-  }
-  var bearing: Double {
-    guard let coordinate = coordinate,
-          let myCoordinate = locationProvider.location?.coordinate else {
-      return 0
-    }
-    return myCoordinate.bearing(to: coordinate)
-  }
-  var distance: Double {
-    guard let myLocation = locationProvider.location,
-          let location = location else {
-      return 0
-    }
-    let distance = myLocation.distance(from: location)
-    return distance
-  }
   var rotationAngle: Double {
-    let angle = bearing - (locationProvider.heading?.magneticHeading ?? 0)
-    let angleInt = Int(angle)
-    if angleInt % 10 == 0 && angleInt != angleOfLastAnnouncement {
-      let announcement: String
-      if angleInt < 0 {
-        announcement = "\(abs(angleInt)) degrees to the left"
-      } else if angleInt > 0 {
-        announcement = "\(abs(angleInt)) degrees to the right"
-      } else {
-        announcement = "\(address) is \(Int(distance/1000)) km straight ahead"
-      }
-      angleOfLastAnnouncement = angleInt
-      UIAccessibility.post(notification: .announcement, argument: announcement)
-    }
-    return angle
+    let angleInt = Int(locationProvider.angle)
+    announcer.announce(angleInt: angleInt, address: address, distance: locationProvider.distance)
+    return locationProvider.angle
   }
   
   var body: some View {
     VStack {
       VStack {
         TextField("Put in an address or a city.", text: $address, onCommit: {
-          CLGeocoder().geocodeAddressString(address) { placementMarks, error in
-            if let placementMark = placementMarks?.first, let location = placementMark.location {
-              
-              coordinate = location.coordinate
-            }
-          }
+          
+          locationProvider.locate(address: address)
         })
         .multilineTextAlignment(.center)
         
-        if let coordinate = coordinate, abs(coordinate.latitude) > 0.001, abs(coordinate.longitude) > 0.001 {
-          Text("\(coordinate.latitude)  \(coordinate.longitude)")
+        if let coordinate = locationProvider.addressLocation?.coordinate, abs(coordinate.latitude) > 0.001, abs(coordinate.longitude) > 0.001 {
+          Text("latitude: \(coordinate.latitude)\nlongitude: \(coordinate.longitude)")
             .font(.footnote)
             .foregroundColor(Color(UIColor.secondaryLabel))
         }
@@ -79,13 +41,14 @@ struct ContentView: View {
           .aspectRatio(contentMode: .fit)
           .rotationEffect(Angle(degrees: rotationAngle))
           .frame(height: 150)
+          .accessibilityHidden(true)
           .padding()
         
         if let error = error {
           Text("\(error.localizedDescription)")
             .padding()
-        } else if distance > 0 {
-          Text(String(format: "%.3lf km", distance/1000))
+        } else if locationProvider.distance > 0 {
+          Text(String(format: "%.3lf km", locationProvider.distance/1000))
             .font(.headline)
             .padding()
         }
@@ -93,17 +56,9 @@ struct ContentView: View {
       
     }
     .padding()
-    .accessibilityHidden(true)
     .onAppear(perform: {
       locationProvider.start()
     })
-  }
-}
-
-// https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-annotations-in-a-map-view
-extension CLLocationCoordinate2D: Identifiable {
-  public var id: String {
-    "\(latitude)-\(longitude)"
   }
 }
 
