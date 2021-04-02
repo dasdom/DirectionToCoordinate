@@ -4,6 +4,7 @@
 
 import UIKit
 import CoreLocation
+import Combine
 
 enum LocationProviderError: Error {
   case noLocation
@@ -17,15 +18,33 @@ class LocationProvider: NSObject, ObservableObject {
   @Published var angle: Double = 0
   @Published var heading: CLHeading? = nil
   @Published var distance: Double = 0
+  private var locationSubscription: AnyCancellable?
+  private var addressLocationSubscription: AnyCancellable?
+  private var headingSubscription: AnyCancellable?
+  var address: String? = nil {
+    didSet {
+      if let address = address {
+        CLGeocoder().geocodeAddressString(address) { placementMarks, error in
+          if let placementMark = placementMarks?.first, let location = placementMark.location {
+            self.addressLocation = location
+          }
+        }
+      }
+    }
+  }
   
-  override init() {
+  init(locationManager: CLLocationManager = CLLocationManager()) {
     
-    locationManager = CLLocationManager()
+    self.locationManager = locationManager
     
     super.init()
     
     locationManager.requestWhenInUseAuthorization()
     locationManager.delegate = self
+    
+    locationSubscription = $location.sink(receiveValue: update)
+    addressLocationSubscription = $addressLocation.sink(receiveValue: update)
+    headingSubscription = $heading.sink(receiveValue: update)
   }
   
   func start() {
@@ -52,20 +71,25 @@ extension LocationProvider: CLLocationManagerDelegate {
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    if let location = locations.last {
-      self.location = location
-      self.updateAngle()
-      self.updateDistance()
-    }
+    self.location = locations.last
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
     heading = newHeading
-    self.updateAngle()
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print("error \(error)")
+  }
+  
+  private func update(location: CLLocation?) {
+    self.updateAngle()
+    self.updateDistance()
+  }
+  
+  private func update(heading: CLHeading?) {
+    self.updateAngle()
+    self.updateDistance()
   }
   
   func updateAngle() {
@@ -83,16 +107,6 @@ extension LocationProvider: CLLocationManagerDelegate {
        let addressLocation = addressLocation {
       
       distance = location.distance(from: addressLocation)
-    }
-  }
-  
-  func locate(address: String) {
-    CLGeocoder().geocodeAddressString(address) { placementMarks, error in
-      if let placementMark = placementMarks?.first, let location = placementMark.location {
-        self.addressLocation = location
-        self.updateAngle()
-        self.updateDistance()
-      }
     }
   }
 }

@@ -24,7 +24,7 @@ struct ContentView: View {
       VStack {
         TextField("Put in an address or a city.", text: $address, onCommit: {
           
-          locationProvider.locate(address: address)
+          locationProvider.address = address
         })
         .multilineTextAlignment(.center)
         
@@ -45,7 +45,7 @@ struct ContentView: View {
           .padding()
         
         if let error = error {
-          Text("\(error.localizedDescription)")
+          Text(verbatim: "\(error.localizedDescription)")
             .padding()
         } else if locationProvider.distance > 0 {
           Text(String(format: "%.3lf km", locationProvider.distance/1000))
