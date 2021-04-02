@@ -18,9 +18,9 @@ class LocationProvider: NSObject, ObservableObject {
   @Published var angle: Double = 0
   @Published var heading: CLHeading? = nil
   @Published var distance: Double = 0
-  private var locationSubscription: AnyCancellable?
-  private var addressLocationSubscription: AnyCancellable?
-  private var headingSubscription: AnyCancellable?
+  @Published var wrongAuthorization: Bool = false
+  private var cancellables = Set<AnyCancellable>()
+  
   var address: String? = nil {
     didSet {
       if let address = address {
@@ -42,9 +42,9 @@ class LocationProvider: NSObject, ObservableObject {
     locationManager.requestWhenInUseAuthorization()
     locationManager.delegate = self
     
-    locationSubscription = $location.sink(receiveValue: update)
-    addressLocationSubscription = $addressLocation.sink(receiveValue: update)
-    headingSubscription = $heading.sink(receiveValue: update)
+    $location.sink(receiveValue: update).store(in: &cancellables)
+    $addressLocation.sink(receiveValue: update).store(in: &cancellables)
+    $heading.sink(receiveValue: update).store(in: &cancellables)
   }
   
   func start() {
@@ -65,7 +65,7 @@ extension LocationProvider: CLLocationManagerDelegate {
     case .authorizedWhenInUse:
       print("authorizedWhenInUse")
     default:
-      #warning("Add alert")
+      wrongAuthorization = true
       print("No authorization")
     }
   }
@@ -99,6 +99,8 @@ extension LocationProvider: CLLocationManagerDelegate {
       
       let bearing = myCoordinate.bearing(to: coordinate)
       angle = bearing - heading.magneticHeading
+//    } else {
+//      print("missing value \(addressLocation?.coordinate), \(location?.coordinate), \(heading)")
     }
   }
   

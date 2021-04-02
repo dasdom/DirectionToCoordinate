@@ -11,11 +11,13 @@
 		F221BD4F26049578004907E4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD4E26049578004907E4 /* ContentView.swift */; };
 		F221BD5126049579004907E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F221BD5026049579004907E4 /* Assets.xcassets */; };
 		F221BD5426049579004907E4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F221BD5326049579004907E4 /* Preview Assets.xcassets */; };
-		F221BD5F26049579004907E4 /* DirectionToCoordinateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD5E26049579004907E4 /* DirectionToCoordinateTests.swift */; };
 		F221BD6A26049579004907E4 /* DirectionToCoordinateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD6926049579004907E4 /* DirectionToCoordinateUITests.swift */; };
 		F221BD7C26049787004907E4 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD7B26049787004907E4 /* LocationProvider.swift */; };
 		F221BD82260499E0004907E4 /* CLLocationCoordinate2DExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BD81260499E0004907E4 /* CLLocationCoordinate2DExtension.swift */; };
 		F24541602616628E003FAA83 /* Announcer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245415F2616628E003FAA83 /* Announcer.swift */; };
+		F245416E26170C01003FAA83 /* StubHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245416D26170C01003FAA83 /* StubHeading.swift */; };
+		F245417426170C22003FAA83 /* LocationProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245417326170C22003FAA83 /* LocationProviderTests.swift */; };
+		F245418E261716F4003FAA83 /* StubHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245416D26170C01003FAA83 /* StubHeading.swift */; };
 		F26A01232605DD1A003EEBE7 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26A01222605DD1A003EEBE7 /* Messages.framework */; };
 		F26A01262605DD1A003EEBE7 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A01252605DD1A003EEBE7 /* MessagesViewController.swift */; };
 		F26A01292605DD1A003EEBE7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F26A01272605DD1A003EEBE7 /* MainInterface.storyboard */; };
@@ -76,7 +78,6 @@
 		F221BD5326049579004907E4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F221BD5526049579004907E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F221BD5A26049579004907E4 /* HeadaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeadaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F221BD5E26049579004907E4 /* DirectionToCoordinateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionToCoordinateTests.swift; sourceTree = "<group>"; };
 		F221BD6026049579004907E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F221BD6526049579004907E4 /* HeadaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeadaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F221BD6926049579004907E4 /* DirectionToCoordinateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionToCoordinateUITests.swift; sourceTree = "<group>"; };
@@ -84,6 +85,8 @@
 		F221BD7B26049787004907E4 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		F221BD81260499E0004907E4 /* CLLocationCoordinate2DExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2DExtension.swift; sourceTree = "<group>"; };
 		F245415F2616628E003FAA83 /* Announcer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcer.swift; sourceTree = "<group>"; };
+		F245416D26170C01003FAA83 /* StubHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubHeading.swift; sourceTree = "<group>"; };
+		F245417326170C22003FAA83 /* LocationProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviderTests.swift; sourceTree = "<group>"; };
 		F26A01202605DD1A003EEBE7 /* HeadingToMe.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HeadingToMe.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F26A01222605DD1A003EEBE7 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		F26A01252605DD1A003EEBE7 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -134,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				F221BD4B26049578004907E4 /* Heada */,
-				F221BD5D26049579004907E4 /* DirectionToCoordinateTests */,
+				F221BD5D26049579004907E4 /* HeadaTests */,
 				F221BD6826049579004907E4 /* DirectionToCoordinateUITests */,
 				F26A01242605DD1A003EEBE7 /* HeadingToMe */,
 				F26A01212605DD1A003EEBE7 /* Frameworks */,
@@ -176,13 +179,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		F221BD5D26049579004907E4 /* DirectionToCoordinateTests */ = {
+		F221BD5D26049579004907E4 /* HeadaTests */ = {
 			isa = PBXGroup;
 			children = (
-				F221BD5E26049579004907E4 /* DirectionToCoordinateTests.swift */,
+				F245417326170C22003FAA83 /* LocationProviderTests.swift */,
+				F245418126170CE9003FAA83 /* Mocks */,
 				F221BD6026049579004907E4 /* Info.plist */,
 			);
-			path = DirectionToCoordinateTests;
+			path = HeadaTests;
 			sourceTree = "<group>";
 		};
 		F221BD6826049579004907E4 /* DirectionToCoordinateUITests */ = {
@@ -192,6 +196,14 @@
 				F221BD6B26049579004907E4 /* Info.plist */,
 			);
 			path = DirectionToCoordinateUITests;
+			sourceTree = "<group>";
+		};
+		F245418126170CE9003FAA83 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				F245416D26170C01003FAA83 /* StubHeading.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		F26A01212605DD1A003EEBE7 /* Frameworks */ = {
@@ -398,6 +410,7 @@
 			files = (
 				F221BD7C26049787004907E4 /* LocationProvider.swift in Sources */,
 				F221BD4F26049578004907E4 /* ContentView.swift in Sources */,
+				F245418E261716F4003FAA83 /* StubHeading.swift in Sources */,
 				F221BD4D26049578004907E4 /* DirectionToCoordinateApp.swift in Sources */,
 				F24541602616628E003FAA83 /* Announcer.swift in Sources */,
 				F221BD82260499E0004907E4 /* CLLocationCoordinate2DExtension.swift in Sources */,
@@ -408,7 +421,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F221BD5F26049579004907E4 /* DirectionToCoordinateTests.swift in Sources */,
+				F245417426170C22003FAA83 /* LocationProviderTests.swift in Sources */,
+				F245416E26170C01003FAA83 /* StubHeading.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,14 +650,14 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q6PD97MRX4;
-				INFOPLIST_FILE = DirectionToCoordinateTests/Info.plist;
+				INFOPLIST_FILE = HeadaTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.DirectionToCoordinateTests;
+				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.HeadaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -658,14 +672,14 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q6PD97MRX4;
-				INFOPLIST_FILE = DirectionToCoordinateTests/Info.plist;
+				INFOPLIST_FILE = HeadaTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.DirectionToCoordinateTests;
+				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.HeadaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

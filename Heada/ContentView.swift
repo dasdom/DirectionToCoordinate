@@ -59,6 +59,14 @@ struct ContentView: View {
     .onAppear(perform: {
       locationProvider.start()
     })
+    .alert(isPresented: $locationProvider.wrongAuthorization) {
+      Alert(title: Text("Not authorized"),
+            message: Text("Open settings and authorize."),
+            dismissButton: .default(Text("Settings"), action: {
+              UIApplication.shared.open(
+                URL(string: UIApplication.openSettingsURLString)!)
+            }))
+    }
   }
 }
 
