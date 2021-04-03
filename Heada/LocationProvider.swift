@@ -63,6 +63,7 @@ extension LocationProvider: CLLocationManagerDelegate {
     
     switch manager.authorizationStatus {
     case .authorizedWhenInUse:
+      wrongAuthorization = false
       print("authorizedWhenInUse")
     default:
       wrongAuthorization = true
