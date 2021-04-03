@@ -12,6 +12,11 @@ struct ContentView: View {
   @State var error: Error?
   @EnvironmentObject private var locationProvider: LocationProvider
   let announcer = Announcer()
+  let distanceFormatter: MKDistanceFormatter = {
+    let formatter = MKDistanceFormatter()
+    formatter.unitStyle = MKDistanceFormatter.DistanceUnitStyle.default
+    return formatter
+  }()
   
   var rotationAngle: Double {
     let angleInt = Int(locationProvider.angle)
@@ -23,7 +28,6 @@ struct ContentView: View {
     VStack {
       VStack {
         TextField("Put in an address or a city.", text: $address, onCommit: {
-          
           locationProvider.address = address
         })
         .multilineTextAlignment(.center)
@@ -31,6 +35,7 @@ struct ContentView: View {
         if let coordinate = locationProvider.addressLocation?.coordinate, abs(coordinate.latitude) > 0.001, abs(coordinate.longitude) > 0.001 {
           Text("latitude: \(coordinate.latitude)\nlongitude: \(coordinate.longitude)")
             .font(.footnote)
+            .multilineTextAlignment(.center)
             .foregroundColor(Color(UIColor.secondaryLabel))
         }
       }
@@ -48,7 +53,7 @@ struct ContentView: View {
           Text(verbatim: "\(error.localizedDescription)")
             .padding()
         } else if locationProvider.distance > 0 {
-          Text(String(format: "%.3lf km", locationProvider.distance/1000))
+          Text(distanceFormatter.string(fromDistance: locationProvider.distance))
             .font(.headline)
             .padding()
         }

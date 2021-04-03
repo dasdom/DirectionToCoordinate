@@ -14,6 +14,11 @@ class DirectionViewController: UIViewController {
   private var locationSubscription: AnyCancellable?
   private var headingSubscription: AnyCancellable?
   private var location: CLLocation?
+  private var distanceFormatter: MKDistanceFormatter = {
+    let formatter = MKDistanceFormatter()
+    formatter.unitStyle = MKDistanceFormatter.DistanceUnitStyle.default
+    return formatter
+  }()
   private var contentView: DirectionView {
     return view as! DirectionView
   }
@@ -59,7 +64,7 @@ class DirectionViewController: UIViewController {
       let mapView = contentView.mapView
       let otherLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
       let distance = location.distance(from: otherLocation)
-      contentView.label.text = String(format: "%.2lf km", distance / 1000)
+      contentView.label.text = distanceFormatter.string(fromDistance: distance)
       
       let mid = coordinate.center(to: location.coordinate)
       let shownMeters = max(1000, 1.2 * distance)

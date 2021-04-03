@@ -42,8 +42,8 @@ class LocationProvider: NSObject, ObservableObject {
     locationManager.requestWhenInUseAuthorization()
     locationManager.delegate = self
     
-    $location.sink(receiveValue: update).store(in: &cancellables)
-    $addressLocation.sink(receiveValue: update).store(in: &cancellables)
+    $location.sink(receiveValue: updateLocation).store(in: &cancellables)
+    $addressLocation.sink(receiveValue: updateAddressLocation).store(in: &cancellables)
     $heading.sink(receiveValue: update).store(in: &cancellables)
   }
   
@@ -72,7 +72,7 @@ extension LocationProvider: CLLocationManagerDelegate {
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    self.location = locations.last
+    location = locations.last
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
@@ -83,17 +83,22 @@ extension LocationProvider: CLLocationManagerDelegate {
     print("error \(error)")
   }
   
-  private func update(location: CLLocation?) {
-    self.updateAngle()
-    self.updateDistance()
+  private func updateLocation(location: CLLocation?) {
+    updateAngle(heading: heading)
+    updateDistance(location: location, addressLocation: addressLocation)
+  }
+  
+  private func updateAddressLocation(addressLocation: CLLocation?) {
+    updateAngle(heading: heading)
+    updateDistance(location: location, addressLocation: addressLocation)
   }
   
   private func update(heading: CLHeading?) {
-    self.updateAngle()
-    self.updateDistance()
+    updateAngle(heading: heading)
+    updateDistance(location: location, addressLocation: addressLocation)
   }
   
-  func updateAngle() {
+  func updateAngle(heading: CLHeading?) {
     if let coordinate = addressLocation?.coordinate,
           let myCoordinate = location?.coordinate,
           let heading = heading {
@@ -105,7 +110,7 @@ extension LocationProvider: CLLocationManagerDelegate {
     }
   }
   
-  func updateDistance() {
+  func updateDistance(location: CLLocation?, addressLocation: CLLocation?) {
     if let location = location,
        let addressLocation = addressLocation {
       

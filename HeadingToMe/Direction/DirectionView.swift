@@ -15,7 +15,7 @@ class DirectionView: UIView {
         
     mapView = MKMapView()
     mapView.translatesAutoresizingMaskIntoConstraints = false
-    mapView.alpha = 0.5
+    mapView.alpha = hideDirectionAndDistance ? 1.0 : 0.5
     mapView.isUserInteractionEnabled = false
     mapView.isScrollEnabled = false
     
