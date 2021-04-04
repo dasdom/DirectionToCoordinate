@@ -62,7 +62,14 @@ class SendViewController: UIViewController {
   
   @objc func send(_ sender: UIButton) {
     if let coordinate = coordinate {
-      delegate.send(self, coordinate: coordinate)
+      let alert = UIAlertController(title: "Sure?", message: "Do you really want to compose a message with your coordinates?", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+      alert.addAction(UIAlertAction(title: "Compose", style: .default, handler: { [weak self] action in
+        guard let self = self else { return }
+        self.delegate.send(self, coordinate: coordinate)
+      }))
+      
+      present(alert, animated: true)
     }
   }
 }

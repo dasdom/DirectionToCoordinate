@@ -10,6 +10,7 @@ struct ContentView: View {
   
   @State var address: String = ""
   @State var error: Error?
+  @State var interfaceOrientation: UIInterfaceOrientation = .portrait
   @EnvironmentObject private var locationProvider: LocationProvider
   let announcer = Announcer()
   let distanceFormatter: MKDistanceFormatter = {
@@ -21,13 +22,30 @@ struct ContentView: View {
   var rotationAngle: Double {
     let angleInt = Int(locationProvider.angle)
     announcer.announce(angleInt: angleInt, address: address, distance: locationProvider.distance)
-    return locationProvider.angle
+    
+    let angle: Double
+    switch interfaceOrientation {
+    case .landscapeLeft:
+      angle = locationProvider.angle + 90
+    case .landscapeRight:
+      angle = locationProvider.angle - 90
+    case .portraitUpsideDown:
+      angle = locationProvider.angle - 180
+    default:
+      angle = locationProvider.angle
+    }
+    return angle
   }
   
   var body: some View {
     VStack {
       VStack {
-        TextField("Put in an address or a city.", text: $address, onCommit: {
+        TextField("Put in an address or a city.", text: $address, onEditingChanged: { startEditing in
+          if startEditing {
+            locationProvider.addressLocation = nil
+            locationProvider.distance = 0
+          }
+        }, onCommit: {
           locationProvider.address = address
         })
         .multilineTextAlignment(.center)
@@ -58,12 +76,25 @@ struct ContentView: View {
             .padding()
         }
       }
-      
+          
+      if locationProvider.distance > 0 {
+        Button(action: {
+          openMapWithDiretions()
+        }, label: {
+          Image(systemName: "arrow.triangle.turn.up.right.diamond")
+        })
+        .font(.title)
+      }
     }
     .padding()
     .onAppear(perform: {
       locationProvider.start()
     })
+    .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+      guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
+      self.interfaceOrientation = scene.interfaceOrientation
+      print("self.interfaceOrientation: \(self.interfaceOrientation.rawValue)")
+    }
     .alert(isPresented: $locationProvider.wrongAuthorization) {
       Alert(title: Text("Not authorized"),
             message: Text("Open settings and authorize."),
@@ -71,6 +102,17 @@ struct ContentView: View {
               UIApplication.shared.open(
                 URL(string: UIApplication.openSettingsURLString)!)
             }))
+    }
+  }
+  
+  func openMapWithDiretions() {
+    if let coordinate = locationProvider.addressLocation?.coordinate,
+       let address = locationProvider.address {
+      let place = MKPlacemark(coordinate: coordinate)
+      let destination = MKMapItem(placemark: place)
+      destination.name = address
+      let options = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDefault]
+      MKMapItem.openMaps(with: [destination], launchOptions: options)
     }
   }
 }

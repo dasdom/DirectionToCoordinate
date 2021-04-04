@@ -80,9 +80,9 @@ class DirectionViewController: UIViewController {
   
   func updateUI(for heading: CLHeading?) {
     if let heading = heading {
-      let rotation = deg2rad(bearing() - heading.magneticHeading)
+      let rotation = deg2rad(bearing() - heading.trueHeading)
       contentView.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(rotation))
-      contentView.mapView.camera.heading = heading.magneticHeading
+      contentView.mapView.camera.heading = heading.trueHeading
     }
   }
   
