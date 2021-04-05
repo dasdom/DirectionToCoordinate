@@ -54,6 +54,8 @@ class DirectionViewController: UIViewController {
     locationProvider.start()
     
     contentView.mapView.isRotateEnabled = !hideDirectionAndDistance
+    
+    rotated()
   }
   
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

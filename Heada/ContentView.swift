@@ -12,27 +12,11 @@ struct ContentView: View {
   @State var error: Error?
   @EnvironmentObject private var locationProvider: LocationProvider
   let announcer = Announcer()
-  let distanceFormatter: MKDistanceFormatter = {
-    let formatter = MKDistanceFormatter()
-    formatter.unitStyle = MKDistanceFormatter.DistanceUnitStyle.default
-    return formatter
-  }()
   
   var rotationAngle: Double {
     let angleInt = Int(locationProvider.angle)
     announcer.announce(angleInt: angleInt, address: address, distance: locationProvider.distance)
     
-//    let angle: Double
-//    switch interfaceOrientation {
-//    case .landscapeLeft:
-//      angle = locationProvider.angle + 90
-//    case .landscapeRight:
-//      angle = locationProvider.angle - 90
-//    case .portraitUpsideDown:
-//      angle = locationProvider.angle - 180
-//    default:
-//      angle = locationProvider.angle
-//    }
     return locationProvider.angle
   }
   
@@ -49,32 +33,10 @@ struct ContentView: View {
         })
         .multilineTextAlignment(.center)
         
-        if let coordinate = locationProvider.addressLocation?.coordinate, abs(coordinate.latitude) > 0.001, abs(coordinate.longitude) > 0.001 {
-          Text("latitude: \(coordinate.latitude)\nlongitude: \(coordinate.longitude)")
-            .font(.footnote)
-            .multilineTextAlignment(.center)
-            .foregroundColor(Color(UIColor.secondaryLabel))
-        }
+        LatLongText(coordinate: locationProvider.addressLocation?.coordinate)
       }
       
-      VStack {
-        Image(systemName: "location.north.fill")
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-          .rotationEffect(Angle(degrees: rotationAngle))
-          .frame(height: 150)
-          .accessibilityHidden(true)
-          .padding()
-        
-        if let error = error {
-          Text(verbatim: "\(error.localizedDescription)")
-            .padding()
-        } else if locationProvider.distance > 0 {
-          Text(distanceFormatter.string(fromDistance: locationProvider.distance))
-            .font(.headline)
-            .padding()
-        }
-      }
+      DirectionDistance(angle: rotationAngle, error: error, distance: locationProvider.distance)
           
       if locationProvider.distance > 0 {
         Button(action: {
@@ -94,8 +56,6 @@ struct ContentView: View {
       if let deviceOrientation = CLDeviceOrientation(rawValue: Int32(scene.interfaceOrientation.rawValue)) {
         self.locationProvider.set(headingOrientation: deviceOrientation)
       }
-//      self.interfaceOrientation = scene.interfaceOrientation
-//      print("self.interfaceOrientation: \(self.interfaceOrientation.rawValue)")
     }
     .alert(isPresented: $locationProvider.wrongAuthorization) {
       Alert(title: Text("Not authorized"),
