@@ -56,6 +56,10 @@ class LocationProvider: NSObject, ObservableObject {
     locationManager.stopUpdatingLocation()
     locationManager.stopUpdatingHeading()
   }
+  
+  func set(headingOrientation: CLDeviceOrientation) {
+    locationManager.headingOrientation = headingOrientation
+  }
 }
 
 extension LocationProvider: CLLocationManagerDelegate {

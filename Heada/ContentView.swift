@@ -10,7 +10,6 @@ struct ContentView: View {
   
   @State var address: String = ""
   @State var error: Error?
-  @State var interfaceOrientation: UIInterfaceOrientation = .portrait
   @EnvironmentObject private var locationProvider: LocationProvider
   let announcer = Announcer()
   let distanceFormatter: MKDistanceFormatter = {
@@ -23,18 +22,18 @@ struct ContentView: View {
     let angleInt = Int(locationProvider.angle)
     announcer.announce(angleInt: angleInt, address: address, distance: locationProvider.distance)
     
-    let angle: Double
-    switch interfaceOrientation {
-    case .landscapeLeft:
-      angle = locationProvider.angle + 90
-    case .landscapeRight:
-      angle = locationProvider.angle - 90
-    case .portraitUpsideDown:
-      angle = locationProvider.angle - 180
-    default:
-      angle = locationProvider.angle
-    }
-    return angle
+//    let angle: Double
+//    switch interfaceOrientation {
+//    case .landscapeLeft:
+//      angle = locationProvider.angle + 90
+//    case .landscapeRight:
+//      angle = locationProvider.angle - 90
+//    case .portraitUpsideDown:
+//      angle = locationProvider.angle - 180
+//    default:
+//      angle = locationProvider.angle
+//    }
+    return locationProvider.angle
   }
   
   var body: some View {
@@ -92,8 +91,11 @@ struct ContentView: View {
     })
     .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
       guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
-      self.interfaceOrientation = scene.interfaceOrientation
-      print("self.interfaceOrientation: \(self.interfaceOrientation.rawValue)")
+      if let deviceOrientation = CLDeviceOrientation(rawValue: Int32(scene.interfaceOrientation.rawValue)) {
+        self.locationProvider.set(headingOrientation: deviceOrientation)
+      }
+//      self.interfaceOrientation = scene.interfaceOrientation
+//      print("self.interfaceOrientation: \(self.interfaceOrientation.rawValue)")
     }
     .alert(isPresented: $locationProvider.wrongAuthorization) {
       Alert(title: Text("Not authorized"),

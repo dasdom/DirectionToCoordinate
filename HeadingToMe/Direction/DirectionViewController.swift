@@ -56,6 +56,39 @@ class DirectionViewController: UIViewController {
     contentView.mapView.isRotateEnabled = !hideDirectionAndDistance
   }
   
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    
+    coordinator.animate(alongsideTransition: nil) { context in
+      self.rotated()
+    }
+  }
+  
+  func rotated() {
+    
+    if let window = view.window {
+      let coordinateSpace = window.screen.fixedCoordinateSpace
+      
+      let originalPoint = CGPoint(x: 1, y: 1)
+      
+      let point = view.convert(originalPoint, from: coordinateSpace)
+      print("point: \(point)")
+      
+      let orientation: CLDeviceOrientation
+      switch (point.x > originalPoint.x + 0.1, point.y > originalPoint.y + 0.1) {
+      case (true, false):
+        orientation = .landscapeRight
+      case (false, true):
+        orientation = .landscapeLeft
+      case (true, true):
+        orientation = .portraitUpsideDown
+      default:
+        orientation = .portrait
+      }
+      
+      locationProvider.set(headingOrientation: orientation)
+    }
+  }
+  
   func updateUI(for location: CLLocation?) {
     
     self.location = location
