@@ -32,6 +32,8 @@
 		F26A0185261394A6003EEBE7 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A0184261394A6003EEBE7 /* Annotation.swift */; };
 		F2A9667A261B999800016721 /* LatLongText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A96679261B999800016721 /* LatLongText.swift */; };
 		F2A96680261B9B4400016721 /* DirectionDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9667F261B9B4400016721 /* DirectionDistance.swift */; };
+		F2A96686261C20B000016721 /* RoutingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A96685261C20B000016721 /* RoutingButton.swift */; };
+		F2A9668C261C269E00016721 /* CLDeviceOrientationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9668B261C269E00016721 /* CLDeviceOrientationExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +104,8 @@
 		F26A0184261394A6003EEBE7 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		F2A96679261B999800016721 /* LatLongText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatLongText.swift; sourceTree = "<group>"; };
 		F2A9667F261B9B4400016721 /* DirectionDistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionDistance.swift; sourceTree = "<group>"; };
+		F2A96685261C20B000016721 /* RoutingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingButton.swift; sourceTree = "<group>"; };
+		F2A9668B261C269E00016721 /* CLDeviceOrientationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDeviceOrientationExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,9 +171,11 @@
 				F221BD4E26049578004907E4 /* ContentView.swift */,
 				F2A96679261B999800016721 /* LatLongText.swift */,
 				F2A9667F261B9B4400016721 /* DirectionDistance.swift */,
+				F2A96685261C20B000016721 /* RoutingButton.swift */,
 				F245415F2616628E003FAA83 /* Announcer.swift */,
 				F221BD7B26049787004907E4 /* LocationProvider.swift */,
 				F221BD81260499E0004907E4 /* CLLocationCoordinate2DExtension.swift */,
+				F2A9668B261C269E00016721 /* CLDeviceOrientationExtension.swift */,
 				F221BD5026049579004907E4 /* Assets.xcassets */,
 				F221BD5526049579004907E4 /* Info.plist */,
 				F221BD5226049579004907E4 /* Preview Content */,
@@ -414,6 +420,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2A96686261C20B000016721 /* RoutingButton.swift in Sources */,
+				F2A9668C261C269E00016721 /* CLDeviceOrientationExtension.swift in Sources */,
 				F221BD7C26049787004907E4 /* LocationProvider.swift in Sources */,
 				F221BD4F26049578004907E4 /* ContentView.swift in Sources */,
 				F2A9667A261B999800016721 /* LatLongText.swift in Sources */,

@@ -8,83 +8,66 @@ import MapKit
 
 struct ContentView: View {
   
-  @State var address: String = ""
-  @State var error: Error?
+  @State private var address: String = ""
   @EnvironmentObject private var locationProvider: LocationProvider
-  let announcer = Announcer()
+  private let announcer = Announcer()
+  @ViewBuilder private var addressOrCityField: some View {
+    TextField("Put in an address or a city.", text: $address, onEditingChanged: { startEditing in
+      if startEditing {
+        locationProvider.reset()
+      }
+    }, onCommit: {
+      locationProvider.address = address
+    })
+    .multilineTextAlignment(.center)
+  }
+  private var notAuthorizedAlert: Alert {
+    Alert(title: Text("Not authorized"),
+          message: Text("Open settings and authorize."),
+          dismissButton: .default(Text("Settings"), action: {
+            UIApplication.shared.open(
+              URL(string: UIApplication.openSettingsURLString)!)
+          }))
+  }
   
-  var rotationAngle: Double {
-    let angleInt = Int(locationProvider.angle)
-    announcer.announce(angleInt: angleInt, address: address, distance: locationProvider.distance)
-    
-    return locationProvider.angle
+  private var rotationAngle: Double {
+    let angle = locationProvider.angle
+    announcer.announce(angle: angle, address: address, distance: locationProvider.distance)
+    return angle
   }
   
   var body: some View {
     VStack {
-      VStack {
-        TextField("Put in an address or a city.", text: $address, onEditingChanged: { startEditing in
-          if startEditing {
-            locationProvider.addressLocation = nil
-            locationProvider.distance = 0
-          }
-        }, onCommit: {
-          locationProvider.address = address
-        })
-        .multilineTextAlignment(.center)
-        
-        LatLongText(coordinate: locationProvider.addressLocation?.coordinate)
-      }
+      addressOrCityField
       
-      DirectionDistance(angle: rotationAngle, error: error, distance: locationProvider.distance)
-          
-      if locationProvider.distance > 0 {
-        Button(action: {
-          openMapWithDiretions()
-        }, label: {
-          Image(systemName: "arrow.triangle.turn.up.right.diamond")
-        })
-        .font(.title)
-      }
+      LatLongText(coordinate: locationProvider.addressLocation?.coordinate)
+      
+      DirectionDistance(angle: rotationAngle, error: locationProvider.error, distance: locationProvider.distance)
+      
+      RoutingButton(locationProvider: locationProvider)
     }
     .padding()
-    .onAppear(perform: {
-      locationProvider.start()
-    })
+    .onAppear(perform: locationProvider.start)
     .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-      guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
-      if let deviceOrientation = CLDeviceOrientation(rawValue: Int32(scene.interfaceOrientation.rawValue)) {
-        self.locationProvider.set(headingOrientation: deviceOrientation)
-      }
+      setHeadingOrientation()
     }
     .alert(isPresented: $locationProvider.wrongAuthorization) {
-      Alert(title: Text("Not authorized"),
-            message: Text("Open settings and authorize."),
-            dismissButton: .default(Text("Settings"), action: {
-              UIApplication.shared.open(
-                URL(string: UIApplication.openSettingsURLString)!)
-            }))
+      notAuthorizedAlert
     }
   }
   
-  func openMapWithDiretions() {
-    if let coordinate = locationProvider.addressLocation?.coordinate,
-       let address = locationProvider.address {
-      let place = MKPlacemark(coordinate: coordinate)
-      let destination = MKMapItem(placemark: place)
-      destination.name = address
-      let options = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDefault]
-      MKMapItem.openMaps(with: [destination], launchOptions: options)
+  private func setHeadingOrientation() {
+    if let scene = UIApplication.shared.windows.first?.windowScene,
+       let deviceOrientation = CLDeviceOrientation(interfaceOrientation: scene.interfaceOrientation) {
+      
+      self.locationProvider.set(headingOrientation: deviceOrientation)
     }
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   
-  static var locationProvider: LocationProvider = {
-    let locationProvider = LocationProvider()
-    return locationProvider
-  }()
+  static var locationProvider: LocationProvider = LocationProvider()
   
   static var previews: some View {
     ContentView()

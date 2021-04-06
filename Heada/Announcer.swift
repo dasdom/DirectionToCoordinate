@@ -7,7 +7,8 @@ import UIKit
 class Announcer {
   var angleOfLastAnnouncement: Int = 180
   
-  func announce(angleInt: Int, address: String, distance: Double) {
+  func announce(angle: Double, address: String, distance: Double) {
+    let angleInt = Int(angle)
     if angleInt % 10 == 0 && angleInt != angleOfLastAnnouncement {
       let announcement: String
       if angleInt < 0 {

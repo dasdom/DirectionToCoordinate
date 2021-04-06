@@ -15,6 +15,7 @@ class LocationProvider: NSObject, ObservableObject {
   private let locationManager: CLLocationManager
   @Published var location: CLLocation?
   @Published var addressLocation: CLLocation?
+  @Published var error: Error?
   @Published var angle: Double = 0
   @Published var heading: CLHeading? = nil
   @Published var distance: Double = 0
@@ -27,6 +28,8 @@ class LocationProvider: NSObject, ObservableObject {
         CLGeocoder().geocodeAddressString(address) { placementMarks, error in
           if let placementMark = placementMarks?.first, let location = placementMark.location {
             self.addressLocation = location
+          } else {
+            self.error = error
           }
         }
       }
@@ -59,6 +62,11 @@ class LocationProvider: NSObject, ObservableObject {
   
   func set(headingOrientation: CLDeviceOrientation) {
     locationManager.headingOrientation = headingOrientation
+  }
+  
+  func reset() {
+    addressLocation = nil
+    distance = 0
   }
 }
 
