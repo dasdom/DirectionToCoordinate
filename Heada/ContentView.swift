@@ -24,10 +24,7 @@ struct ContentView: View {
   private var notAuthorizedAlert: Alert {
     Alert(title: Text("Not authorized"),
           message: Text("Open settings and authorize."),
-          dismissButton: .default(Text("Settings"), action: {
-            UIApplication.shared.open(
-              URL(string: UIApplication.openSettingsURLString)!)
-          }))
+          dismissButton: .default(Text("Settings"), action: openSettings))
   }
   
   private var rotationAngle: Double {
@@ -62,6 +59,10 @@ struct ContentView: View {
       
       self.locationProvider.set(headingOrientation: deviceOrientation)
     }
+  }
+  
+  private func openSettings() {
+    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
   }
 }
 
