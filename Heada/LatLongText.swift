@@ -26,5 +26,6 @@ struct LatLongText: View {
 struct LatLongText_Previews: PreviewProvider {
   static var previews: some View {
     LatLongText(coordinate: CLLocationCoordinate2D(latitude: 1, longitude: 2))
+      .previewLayout(.sizeThatFits)
   }
 }

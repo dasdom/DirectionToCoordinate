@@ -43,5 +43,6 @@ struct DirectionDistance: View {
 struct DirectionDistance_Previews: PreviewProvider {
     static var previews: some View {
       DirectionDistance(angle: 20, error: nil, distance: 30)
+        .previewLayout(.sizeThatFits)
     }
 }

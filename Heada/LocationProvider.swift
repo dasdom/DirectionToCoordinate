@@ -116,7 +116,7 @@ extension LocationProvider: CLLocationManagerDelegate {
           let heading = heading {
       
       let bearing = myCoordinate.bearing(to: coordinate)
-      angle = bearing - heading.trueHeading
+      angle = bearing - heading.magneticHeading
 //    } else {
 //      print("missing value \(addressLocation?.coordinate), \(location?.coordinate), \(heading)")
     }
