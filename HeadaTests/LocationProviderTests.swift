@@ -23,14 +23,18 @@ class LocationProviderTests: XCTestCase {
   func test_locationUpdate_updatesAngle() throws {
     sut.locationManager(locationManager, didUpdateHeading: CLHeading())
     sut.addressLocation = CLLocation(latitude: 1, longitude: 2)
+    let publisherExpectation = expectation(description: "Publisher")
     var resultAngle: Double? = nil
-    _ = sut.$angle.dropFirst().sink { angle in
+    let token = sut.$angle.dropFirst().sink { angle in
       resultAngle = angle
+      publisherExpectation.fulfill()
     }
-    
+
     let location = CLLocation(latitude: 3, longitude: 4)
     sut.locationManager(locationManager, didUpdateLocations: [location])
-    
+
+    wait(for: [publisherExpectation], timeout: 1)
+    token.cancel()
     let unwrappedResult = try XCTUnwrap(resultAngle)
     XCTAssertEqual(unwrappedResult, 10)
   }

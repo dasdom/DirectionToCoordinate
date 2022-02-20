@@ -30,6 +30,12 @@
 		F26A014D2605DE44003EEBE7 /* DirectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A014B2605DE44003EEBE7 /* DirectionView.swift */; };
 		F26A014E2605DE44003EEBE7 /* DirectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A014C2605DE44003EEBE7 /* DirectionViewController.swift */; };
 		F26A0185261394A6003EEBE7 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A0184261394A6003EEBE7 /* Annotation.swift */; };
+		F274B9822735C529003648FF /* HeadingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F274B9812735C529003648FF /* HeadingsListView.swift */; };
+		F274B9842735C5A0003648FF /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F274B9832735C5A0003648FF /* HeadingView.swift */; };
+		F274B9862735C721003648FF /* PointOfRelevance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F274B9852735C721003648FF /* PointOfRelevance.swift */; };
+		F274B9882735C77F003648FF /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F274B9872735C77F003648FF /* Coordinate.swift */; };
+		F274B98A2735D43C003648FF /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F274B9872735C77F003648FF /* Coordinate.swift */; };
+		F274B98C2735DA02003648FF /* PointOfRelevanceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F274B98B2735DA02003648FF /* PointOfRelevanceStore.swift */; };
 		F2A9667A261B999800016721 /* LatLongText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A96679261B999800016721 /* LatLongText.swift */; };
 		F2A96680261B9B4400016721 /* DirectionDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9667F261B9B4400016721 /* DirectionDistance.swift */; };
 		F2A96686261C20B000016721 /* RoutingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A96685261C20B000016721 /* RoutingButton.swift */; };
@@ -102,6 +108,11 @@
 		F26A014B2605DE44003EEBE7 /* DirectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionView.swift; sourceTree = "<group>"; };
 		F26A014C2605DE44003EEBE7 /* DirectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionViewController.swift; sourceTree = "<group>"; };
 		F26A0184261394A6003EEBE7 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		F274B9812735C529003648FF /* HeadingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingsListView.swift; sourceTree = "<group>"; };
+		F274B9832735C5A0003648FF /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
+		F274B9852735C721003648FF /* PointOfRelevance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfRelevance.swift; sourceTree = "<group>"; };
+		F274B9872735C77F003648FF /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		F274B98B2735DA02003648FF /* PointOfRelevanceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfRelevanceStore.swift; sourceTree = "<group>"; };
 		F2A96679261B999800016721 /* LatLongText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatLongText.swift; sourceTree = "<group>"; };
 		F2A9667F261B9B4400016721 /* DirectionDistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionDistance.swift; sourceTree = "<group>"; };
 		F2A96685261C20B000016721 /* RoutingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingButton.swift; sourceTree = "<group>"; };
@@ -168,6 +179,9 @@
 			isa = PBXGroup;
 			children = (
 				F221BD4C26049578004907E4 /* DirectionToCoordinateApp.swift */,
+				F274B9812735C529003648FF /* HeadingsListView.swift */,
+				F274B9832735C5A0003648FF /* HeadingView.swift */,
+				F274B9892735CDB1003648FF /* Model */,
 				F221BD4E26049578004907E4 /* ContentView.swift */,
 				F2A96679261B999800016721 /* LatLongText.swift */,
 				F2A9667F261B9B4400016721 /* DirectionDistance.swift */,
@@ -256,6 +270,16 @@
 				F26A0184261394A6003EEBE7 /* Annotation.swift */,
 			);
 			path = Direction;
+			sourceTree = "<group>";
+		};
+		F274B9892735CDB1003648FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F274B9852735C721003648FF /* PointOfRelevance.swift */,
+				F274B9872735C77F003648FF /* Coordinate.swift */,
+				F274B98B2735DA02003648FF /* PointOfRelevanceStore.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,10 +450,15 @@
 				F221BD4F26049578004907E4 /* ContentView.swift in Sources */,
 				F2A9667A261B999800016721 /* LatLongText.swift in Sources */,
 				F245418E261716F4003FAA83 /* StubHeading.swift in Sources */,
+				F274B9862735C721003648FF /* PointOfRelevance.swift in Sources */,
+				F274B9882735C77F003648FF /* Coordinate.swift in Sources */,
 				F221BD4D26049578004907E4 /* DirectionToCoordinateApp.swift in Sources */,
+				F274B9842735C5A0003648FF /* HeadingView.swift in Sources */,
 				F24541602616628E003FAA83 /* Announcer.swift in Sources */,
 				F2A96680261B9B4400016721 /* DirectionDistance.swift in Sources */,
+				F274B9822735C529003648FF /* HeadingsListView.swift in Sources */,
 				F221BD82260499E0004907E4 /* CLLocationCoordinate2DExtension.swift in Sources */,
+				F274B98C2735DA02003648FF /* PointOfRelevanceStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +488,7 @@
 				F26A01392605DDEC003EEBE7 /* LocationProvider.swift in Sources */,
 				F26A01262605DD1A003EEBE7 /* MessagesViewController.swift in Sources */,
 				F26A01452605DE27003EEBE7 /* SendView.swift in Sources */,
+				F274B98A2735D43C003648FF /* Coordinate.swift in Sources */,
 				F26A01382605DDEC003EEBE7 /* CLLocationCoordinate2DExtension.swift in Sources */,
 				F26A0185261394A6003EEBE7 /* Annotation.swift in Sources */,
 				F26A014E2605DE44003EEBE7 /* DirectionViewController.swift in Sources */,
