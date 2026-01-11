@@ -7,7 +7,7 @@ import MapKit
 import Combine
 
 protocol SendViewControllerDelegate {
-  func send(_ viewController: UIViewController, coordinate: CLLocationCoordinate2D)
+  func send(_ viewController: UIViewController, coordinate: CLLocationCoordinate2D, image: UIImage?)
 }
 
 class SendViewController: UIViewController {
@@ -61,15 +61,23 @@ class SendViewController: UIViewController {
   }
   
   @objc func send(_ sender: UIButton) {
+
     if let coordinate = coordinate {
-      let alert = UIAlertController(title: "Sure?", message: "Do you really want to compose a message with your coordinates?", preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-      alert.addAction(UIAlertAction(title: "Compose", style: .default, handler: { [weak self] action in
-        guard let self = self else { return }
-        self.delegate.send(self, coordinate: coordinate)
-      }))
-      
-      present(alert, animated: true)
+      var options = MKMapSnapshotter.Options()
+      options.region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 300, longitudinalMeters: 300)
+      var snapshotter = MKMapSnapshotter(options: options)
+      snapshotter.start { [weak self] snapshot, error in
+
+        let alert = UIAlertController(title: "Sure?", message: "Do you really want to compose a message with your coordinates?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Compose", style: .default, handler: { [weak self] action in
+          guard let self = self else { return }
+          self.delegate.send(self, coordinate: coordinate, image: snapshot?.image)
+        }))
+        
+        self?.present(alert, animated: true)
+      }
+
     }
   }
 }

@@ -7,39 +7,46 @@ import CoreLocation
 import MapKit
 
 struct HeadingView: View {
-
-  let location: PointOfRelevance
-  let heading: CLLocationDirection?
-  let deviceCoordinate: CLLocation?
+  let locationProvider: LocationProvider
+  let point: PointOfRelevance
   let distanceFormatter: MKDistanceFormatter
+  @State var dateFormatter: DateFormatter?
 
   private var angle: Double {
-    return LocationProvider.angle(coordinate: location.coordinate,
-                                  heading: heading,
-                                  deviceCoordinate: deviceCoordinate)
+    return locationProvider.angle(coordinate: point.coordinate)
   }
   private var distance: CLLocationDistance {
-    guard let deviceCoordinate = deviceCoordinate else {
+    guard let deviceCoordinate = locationProvider.location else {
       return 0
     }
-    return location.clLocation.distance(from: deviceCoordinate)
+    return point.clLocation.distance(from: deviceCoordinate)
   }
 
   var body: some View {
     HStack {
-        Image(systemName: "location.north.fill")
+        Image(systemName: "arrow.up")
           .resizable()
-          .aspectRatio(1, contentMode: .fit)
+          .aspectRatio(contentMode: .fit)
           .rotationEffect(Angle(degrees: angle))
           .frame(height: 60)
         .padding()
 
 
-      VStack {
-        Text(location.name)
-          .font(.title)
+      VStack(alignment: .leading) {
+        Text(point.name)
+          .font(.title2)
         Text(distanceFormatter.string(fromDistance: distance))
           .font(.body)
+        if let dateFormatter {
+          Text("Local Time: \(dateFormatter.string(from: Date()))")
+        }
+      }
+    }
+    .onAppear {
+      if let timezone = point.timezone {
+        dateFormatter = DateFormatter()
+        dateFormatter?.dateFormat = "HH:mm"
+        dateFormatter?.timeZone = timezone
       }
     }
   }
@@ -53,12 +60,11 @@ struct HeadingView_Previews: PreviewProvider {
   }()
 
   static var previews: some View {
-    HeadingView(location: PointOfRelevance(name: "Name",
+    HeadingView(locationProvider: LocationProvider(),
+      point: PointOfRelevance(name: "Name",
                                    address: "Address",
                                    coordinate: Coordinate(latitude: 1,
-                                                          longitude: 2)),
-                heading: 30,
-    deviceCoordinate: CLLocation(latitude: 20, longitude: 50),
+                                                          longitude: 2), timezone: nil),
     distanceFormatter: distanceFormatter)
       .previewLayout(.sizeThatFits)
   }

@@ -6,10 +6,11 @@ import SwiftUI
 
 @main
 struct DirectionToCoordinateApp: App {
+  @StateObject var locationProvider = LocationProvider()
   var body: some Scene {
     WindowGroup {
-      ContentView()
-        .environmentObject(LocationProvider())
+      HeadingsListView()
+        .environmentObject(locationProvider)
     }
   }
 }

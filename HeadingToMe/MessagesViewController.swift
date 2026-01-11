@@ -146,12 +146,11 @@ class MessagesViewController: MSMessagesAppViewController {
 }
 
 extension MessagesViewController: SendViewControllerDelegate {
-  func send(_ viewController: UIViewController, coordinate: CLLocationCoordinate2D) {
-    
+  func send(_ viewController: UIViewController, coordinate: CLLocationCoordinate2D, image: UIImage?) {
+
     guard let conversation = activeConversation else { fatalError("Expected a conversation") }
     
 //    let image = viewController.screenshot()
-    let image: UIImage? = nil
     
     let message = composeMessage(coordinate: coordinate, caption: "I'm here", image: image, session: conversation.selectedMessage?.session)
     

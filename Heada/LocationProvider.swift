@@ -15,6 +15,7 @@ class LocationProvider: NSObject, ObservableObject {
   private let locationManager: CLLocationManager
   @Published var location: CLLocation?
   @Published var addressLocation: CLLocation?
+  @Published var timeZone: TimeZone?
   @Published var error: Error?
   @Published var angle: Double = 0
   @Published var heading: CLHeading? = nil
@@ -28,6 +29,7 @@ class LocationProvider: NSObject, ObservableObject {
         CLGeocoder().geocodeAddressString(address) { placementMarks, error in
           if let placementMark = placementMarks?.first, let location = placementMark.location {
             self.addressLocation = location
+            self.timeZone = placementMark.timeZone
           } else {
             self.error = error
           }
@@ -130,14 +132,23 @@ extension LocationProvider: CLLocationManagerDelegate {
     }
   }
 
-  static func angle(coordinate: Coordinate, heading: CLLocationDirection?, deviceCoordinate: CLLocation?) -> Double {
+  func angle(coordinate: Coordinate) -> Double {
 
-    guard let deviceCoordinate = deviceCoordinate,
-          let heading = heading else {
+    guard let deviceCoordinate = location else {
+      return 0
+    }
+    guard let heading = heading else {
+      #if targetEnvironment(simulator)
+      let clCoordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+      let bearing = deviceCoordinate.coordinate.bearing(to: clCoordinate)
+      return bearing
+      #else
             return 0
+      #endif
           }
+
     let clCoordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
     let bearing = deviceCoordinate.coordinate.bearing(to: clCoordinate)
-    return bearing - heading
+    return bearing - heading.magneticHeading
   }
 }
